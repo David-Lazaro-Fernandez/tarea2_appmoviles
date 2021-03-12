@@ -1,2 +1,2 @@
-# tarea2_appmoviles
-Tarea 2 Aplicaciones moviles UANL
+# Tarea 2 Aplicaciones Móviles
+### I- Buscar una API  pública y de preferencia sin autenticación.a)Crear un sitio web básico con HTML y bootstrapb)Crear un script en un archivo separado que contenga la llamada de la APIc)Hacer la llamada a la API mediante Ajax o Fetch. ​NO UTILIZAR JQUERYd)Mostrar los datos de la API en una tabla en HTMLe)Subir tu código a GitHub.II-Documentarmanualdeusuarioconcapturadepantallasdecomofuncionalaaplicaciónycolocar el enlace público de githubEl trabajo puede realizarse individual o en equipo de máximo 5 personas.
