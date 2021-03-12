@@ -1,0 +1,40 @@
+*{
+    font-family: 'Roboto';
+    margin: 0px;
+    padding: 0px;
+}
+
+
+#pokeheader{
+    z-index: 3;
+    font-family: 'Roboto';
+    font-size: 4rem;
+    font-weight: 600;
+    text-align: center;
+    margin-top: 10px;
+    color:	rgb(17, 17, 17);
+}
+
+#main{
+    background-color: #FFFFFF;
+}
+
+table{
+    
+    border: solid rgb(95, 95, 95) 2px;
+    border-radius: 1px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+
+table thead{
+    background-color: rgb(253, 77, 77);
+    color:#FFFFFF;
+}
+
+img{
+    max-width: 100px;
+}
+
+table td{
+
+}
