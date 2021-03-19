@@ -67,7 +67,6 @@ async function allPokemons() {
   for (let i = 1; i <= 3; i++) {
     let c=Math.floor((Math.random() * 800) + 1);
     await requestPokemon(c);
-    
   }
 
   htmlPokemonListID.innerHTML += pokemonList;
