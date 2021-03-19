@@ -1,8 +1,9 @@
 //Constante que apunta al id del tbody
 const htmlPokemonListID = document.getElementById("pokemonList");
+const htmlItem = document.getElementById("item");
 //String donde se almacenaran nuestros elementos en forma de html
 let pokemonList = "";
-
+let itemstr="";
 
 // peticion general
 async function requestPokemon(number) {
@@ -12,7 +13,7 @@ async function requestPokemon(number) {
   const pokemon = await response.json();
 
   // url de la imagen del pokemon 
-  let urlimagen="https://www.serebii.net/swordshield/pokemon/"; 
+  let urlimagen="https://assets.pokemon.com/assets/cms2/img/pokedex/full/"; 
   // url de la imagen del tipo del pokemon
   let urlimagentipo="https://www.serebii.net/pokedex-bw/type/" + pokemon.types[0].type.name +".gif";
   // url de la imagen del tipo secundario (el pokemon puede que no tenga tipo secundario)
@@ -45,9 +46,9 @@ async function requestPokemon(number) {
   pokemonList += `<tr>
                     <td scope="row">${pokemon.id} </td>
                     <td>${pokemon.name}</td>
-                    <td><img src="${urlimagen}"></td>
+                    <td><figure><img src="${urlimagen}"></figure></td>
                     <td>
-                      <img src="${urlimagentipo}">`;
+                      <img src="${urlimagentipo}" href="${urlimagentipo}">`;
 
   if(canttipos==2) // si tiene 2 tipos entonces pondrá el secundario, de lo contrario no lo coloca
   {
@@ -63,11 +64,46 @@ async function requestPokemon(number) {
 }
 
 async function allPokemons() {
-  for (let i = 1; i <= 10; i++) {
-    await requestPokemon(i);
+  for (let i = 1; i <= 3; i++) {
+    let c=Math.floor((Math.random() * 800) + 1);
+    await requestPokemon(c);
+    
   }
 
   htmlPokemonListID.innerHTML += pokemonList;
 }
 
+async function requestRandomItem( )
+{
+  let berryid=Math.floor((Math.random() * 20) + 1);
+  const response = await fetch(`https://pokeapi.co/api/v2/item/${berryid}`);
+  const item = await response.json();
+
+
+  let url="https://img.pokemondb.net/sprites/items/"+item.name+".png";
+
+
+  itemstr=`<div>
+          <figure><img src="${url}" class="mx-auto d-block" class="img-fluid" ></figure>
+          <h5>${item.name}</h4>`;
+  if(item.cost==0)
+  {
+    itemstr+=`This item cannot be bought in Official Pokémon Centers`;
+  }        
+  else
+  {
+    itemstr+=`<p>${item.cost} ₽</p>
+        </div>
+  `;
+  }
+  
+}
+
+async function showItem()
+{
+  await requestRandomItem();
+  htmlItem.innerHTML=itemstr;
+}
+
 allPokemons();
+showItem();

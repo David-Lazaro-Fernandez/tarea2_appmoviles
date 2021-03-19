@@ -2,6 +2,7 @@
     font-family: 'Roboto';
     margin: 0px;
     padding: 0px;
+    text-align:center;
 }
 
 
@@ -13,6 +14,10 @@
     text-align: center;
     margin-top: 10px;
     color:	rgb(17, 17, 17);
+}
+
+img{
+    max-width: 100px;
 }
 
 #main{
@@ -29,8 +34,18 @@ table{
 table thead{
     background-color: rgb(253, 77, 77);
     color:#FFFFFF;
+    text-align: center;
 }
 
-img{
-    max-width: 100px;
+table td{
+    text-align: center;
+    vertical-align: middle;
+    font-size: 20px;
+    font-weight: 500;
 }
+
+table img{
+    min-width: 60px;   
+}
+
+
