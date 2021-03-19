@@ -2,6 +2,7 @@
     font-family: 'Roboto';
     margin: 0px;
     padding: 0px;
+    text-align:center;
 }
 
 
@@ -46,3 +47,5 @@ table td{
 table img{
     min-width: 60px;   
 }
+
+
