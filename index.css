@@ -68,3 +68,21 @@ table img{
     border: solid white 2px;
     border-radius: 1px;
 }
+
+#import{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: rgb(253, 77, 77);
+    color:#FFF;
+    font-family: 'Roboto';
+    font-weight: 600;
+    margin-bottom: 25px;
+    cursor:pointer;
+}
+
+#import :hover{
+    background-color: rgb(92, 8, 8);
+  }
+  
