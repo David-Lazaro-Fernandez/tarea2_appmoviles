@@ -42,9 +42,12 @@ async function requestPokemon(number) {
     canttipos++;
   }
   
+  //Poner el nombre con la primera letra en mayusculas
+  const firstLetter = pokemon.name.charAt(0).toUpperCase();
+  pokemon.name = firstLetter + pokemon.name.slice(1);
 
   pokemonList += `<tr>
-                    <td scope="row">${pokemon.id} </td>
+                    <td scope="row" class="pID">${pokemon.id} </td>
                     <td>${pokemon.name}</td>
                     <td><figure><img src="${urlimagen}"></figure></td>
                     <td>
@@ -64,7 +67,7 @@ async function requestPokemon(number) {
 }
 
 async function allPokemons() {
-  for (let i = 1; i <= 3; i++) {
+  for (let i = 1; i <= 6; i++) {
     let c=Math.floor((Math.random() * 800) + 1);
     await requestPokemon(c);
   }
@@ -74,16 +77,22 @@ async function allPokemons() {
 
 async function requestRandomItem( )
 {
-  let berryid=Math.floor((Math.random() * 20) + 1);
+  const itemArray = [581,249,253,683,245,209,274,197,247,211];
+  let random=Math.floor((Math.random() * 10) + 1);
+  let berryid = itemArray[random]
+
   const response = await fetch(`https://pokeapi.co/api/v2/item/${berryid}`);
   const item = await response.json();
 
+ 
 
   let url="https://img.pokemondb.net/sprites/items/"+item.name+".png";
 
-
+  //Poner en mayusculas la primera leta del item.name
+  const firstLetter = item.name.charAt(1).toUpperCase();
+  item.name = firstLetter + item.name.slice(1)
   itemstr=`<div>
-          <figure><img src="${url}" class="mx-auto d-block" class="img-fluid" ></figure>
+          <figure><img src="${url}" class="mx-auto d-block" class="img-fluid" style="min-width:70px;" ></figure>
           <h5>${item.name}</h4>`;
   if(item.cost==0)
   {
