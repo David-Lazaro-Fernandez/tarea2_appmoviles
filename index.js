@@ -1,10 +1,12 @@
 //Constante que apunta al id del tbody
 const htmlPokemonListID = document.getElementById("pokemonList");
 const htmlItem = document.getElementById("item");
+const htmlShowdown=document.getElementById("showdown");
 //String donde se almacenaran nuestros elementos en forma de html
 let pokemonList = "";
 let itemstr="";
-
+let importShowdown="";
+let itemname="";
 // peticion general
 async function requestPokemon(number) {
 
@@ -42,9 +44,12 @@ async function requestPokemon(number) {
     canttipos++;
   }
   
+  //Poner el nombre con la primera letra en mayusculas
+  const firstLetter = pokemon.name.charAt(0).toUpperCase();
+  pokemon.name = firstLetter + pokemon.name.slice(1);
 
   pokemonList += `<tr>
-                    <td scope="row">${pokemon.id} </td>
+                    <td scope="row" class="pID">${pokemon.id} </td>
                     <td>${pokemon.name}</td>
                     <td><figure><img src="${urlimagen}"></figure></td>
                     <td>
@@ -61,30 +66,39 @@ async function requestPokemon(number) {
                     <td>${pesokilos} kgs | ${pesolibras.toFixed(1)} lbs</td>
                 </tr>
                 `;
+
+  importShowdown+=`<h5>${pokemon.name} @ ${itemname}</h5>
+                    </br>`;             
 }
 
 async function allPokemons() {
-  for (let i = 1; i <= 3; i++) {
+  for (let i = 1; i <= 6; i++) {
     let c=Math.floor((Math.random() * 800) + 1);
     await requestPokemon(c);
-    
   }
-
   htmlPokemonListID.innerHTML += pokemonList;
+  htmlShowdown.innerHTML+=importShowdown;
 }
 
-async function requestRandomItem( )
+async function requestRandomItem()
 {
-  let berryid=Math.floor((Math.random() * 20) + 1);
-  const response = await fetch(`https://pokeapi.co/api/v2/item/${berryid}`);
+  const itemArray = [581,249,253,683,245,209,274,197,247,211];
+  let random=Math.floor((Math.random() * 9));
+  let itemid = itemArray[random]
+
+  const response = await fetch(`https://pokeapi.co/api/v2/item/${itemid}`);
   const item = await response.json();
 
-
+ 
+  
   let url="https://img.pokemondb.net/sprites/items/"+item.name+".png";
 
-
+  //Poner en mayusculas la primera leta del item.name
+  const firstLetter = item.name.charAt(0).toUpperCase();
+  item.name = firstLetter + item.name.slice(1)
+  itemname=item.name;
   itemstr=`<div>
-          <figure><img src="${url}" class="mx-auto d-block" class="img-fluid" ></figure>
+          <figure><img src="${url}" class="mx-auto d-block" class="img-fluid" style="min-width:70px;" >${itemid}</figure>
           <h5>${item.name}</h4>`;
   if(item.cost==0)
   {
@@ -105,5 +119,7 @@ async function showItem()
   htmlItem.innerHTML=itemstr;
 }
 
-allPokemons();
+
+
 showItem();
+allPokemons();
