@@ -83,22 +83,26 @@ async function allPokemons() {
 async function requestRandomItem()
 {
   const itemArray = [581,249,253,683,245,209,274,197,247,211];
+
   let random=Math.floor((Math.random() * 9));
   let itemid = itemArray[random]
 
   const response = await fetch(`https://pokeapi.co/api/v2/item/${itemid}`);
   const item = await response.json();
 
+
  
   
   let url="https://img.pokemondb.net/sprites/items/"+item.name+".png";
 
   //Poner en mayusculas la primera leta del item.name
+
   const firstLetter = item.name.charAt(0).toUpperCase();
   item.name = firstLetter + item.name.slice(1)
   itemname=item.name;
   itemstr=`<div>
           <figure><img src="${url}" class="mx-auto d-block" class="img-fluid" style="min-width:70px;" >${itemid}</figure>
+
           <h5>${item.name}</h4>`;
   if(item.cost==0)
   {
